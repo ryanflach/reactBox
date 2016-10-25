@@ -1,12 +1,23 @@
 import React, { Component } from 'react';
 import './App.css';
-import CreateTaskBox from './CreateTaskBox';
+import InputSubmission from './InputSubmission';
 
 class App extends Component {
+  constructor() {
+    super();
+
+    this.state = { ideas: [] }
+  }
+
+  addIdea(idea) {
+    this.state.ideas.push(idea);
+    this.setState({ ideas: this.state.ideas });
+  }
+
   render() {
     return (
       <div>
-        <CreateTaskBox />
+        <InputSubmission sendIdea={ this.addIdea.bind(this) }/>
       </div>
     );
   }
