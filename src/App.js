@@ -17,15 +17,25 @@ class App extends Component {
 
   addIdea(idea) {
     this.state.ideas.push(idea);
-    localStorage.ideas = JSON.stringify(this.state.ideas);
-    this.setState({ ideas: this.state.ideas });
+    this.updateIdeas(this.state.ideas);
+  }
+
+  deleteIdea(id) {
+    const storedIdeas = JSON.parse(localStorage.ideas);
+    const keptIdeas = storedIdeas.filter((idea) => idea.id !== id);
+    this.updateIdeas(keptIdeas);
+  }
+
+  updateIdeas(ideas) {
+    localStorage.ideas = JSON.stringify(ideas);
+    this.setState({ ideas: ideas });
   }
 
   render() {
     return (
       <div>
         <InputSubmission sendIdea={ this.addIdea.bind(this) }/>
-        <IdeasList ideas={ this.state.ideas }/>
+        <IdeasList ideas={ this.state.ideas } handleDelete={ this.deleteIdea.bind(this) }/>
       </div>
     );
   }

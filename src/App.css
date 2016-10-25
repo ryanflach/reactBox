@@ -47,6 +47,11 @@ table {
     border-spacing: 0;
 }
 
+.Idea {
+  margin: 20px;
+  border: 2px solid black;
+}
+
 .App {
   text-align: center;
 }
